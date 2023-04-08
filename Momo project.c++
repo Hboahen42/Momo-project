@@ -78,11 +78,11 @@ int main()
             }
             break;
         case 4:
-            cout << "Enter receiver's phone number: \n";
+            cout << "Enter receiver's phone number: " << endl;
             cin >> receiver_number;
-            cout << "Enter amount: \n";
+            cout << "Enter amount: " << endl;
             cin >> amount;
-            cout << "Enter pin: \n";
+            cout << "Enter pin: " << endl;
             cin >> enter_pin;
             if (authenticate(enter_pin))
             {
