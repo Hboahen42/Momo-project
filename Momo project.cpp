@@ -26,6 +26,10 @@ bool authenticate(string entered_pin)
         }
     }
 }
+void error_message()
+{
+    cout << "Invalid Input. Please try again." << endl;
+}
 
 int main()
 {
@@ -74,29 +78,44 @@ int main()
             cin >> enter_pin;
             if (authenticate(enter_pin))
             {
-                cout << "YOur balance is: " << balance << endl;
+                cout << "Your balance is: " << balance << endl;
             }
             break;
         case 4:
             cout << "Enter receiver's phone number: " << endl;
             cin >> receiver_number;
-            cout << "Enter amount: " << endl;
-            cin >> amount;
-            cout << "Enter pin: " << endl;
-            cin >> enter_pin;
-            if (authenticate(enter_pin))
+            if (receiver_number.size() == 10)
             {
-                if (amount <= balance)
+                cout << "Enter amount: " << endl;
+                cin >> amount;
+                if (amount >= 0)
                 {
-                    balance -= amount;
-                    cout << amount << " was successfully sent to " << receiver_number << endl;
-                    cout << "Your new balance is: " << balance << endl;
+                    cout << "Enter pin: " << endl;
+                    cin >> enter_pin;
+                    if (authenticate(enter_pin))
+                    {
+                        if (amount <= balance)
+                        {
+                            balance -= amount;
+                            cout << amount << " was successfully sent to " << receiver_number << endl;
+                            cout << "Your new balance is: " << balance << endl;
+                        }
+                        else
+                        {
+                            cout << "You have insufficient funds." << endl;
+                        }
+                    }
                 }
                 else
                 {
-                    cout << "You have insufficient funds." << endl;
+                    error_message();
                 }
             }
+            else
+            {
+                error_message();
+            }
+
             break;
         case 5:
             cout << "Thank you for using Humphrey's Mobile Money Service." << endl;
